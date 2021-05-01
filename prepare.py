@@ -1,11 +1,10 @@
-import numpy as np
 import os
-import urllib
-from urllib import request
-import matplotlib
-import matplotlib.pyplot as plt
 import gzip
 import struct
+
+from urllib import request
+import numpy as np
+import matplotlib.pyplot as plt
 import tensorflow as tf
 
 # ## Download MNIST dataset
@@ -17,7 +16,7 @@ os.makedirs('./data/mnist', exist_ok = True)
 def download_data(url, filename):
     if not tf.gfile.Exists(filename):
         print('downloading ' + url)
-        urllib.request.urlretrieve(url, filename = filename)
+        request.urlretrieve(url, filename = filename)
     else:
         print(filename + ' exists, using it')
 

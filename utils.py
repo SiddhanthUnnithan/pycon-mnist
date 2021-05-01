@@ -1,10 +1,10 @@
 import os
 import gzip
-import numpy as np
 import struct
+
 import urllib
 from urllib import request
-
+import numpy as np
 
 # load compressed MNIST gz files and return numpy arrays
 def load_data(filename, label = False):

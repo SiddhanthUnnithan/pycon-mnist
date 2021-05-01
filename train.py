@@ -1,17 +1,16 @@
-import numpy as np
-import argparse
 import os
-import tensorflow as tf
-import sys
-
 import gzip
 import struct
+import sys
+import argparse
+
+import numpy as np
+import tensorflow as tf
+
 from utils import prepare_data
 from amlrun import get_AMLRun
 
-# ## Download MNIST dataset
-# In order to train on the MNIST dataset we will first need to download
-
+# download MNIST dataset for training
 X_train, X_test, y_train, y_test = prepare_data('mnist', './data')
 
 training_set_size = X_train.shape[0]

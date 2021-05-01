@@ -7,6 +7,7 @@ def get_AMLRun():
     try:
         run = Run.get_submitted_run()
         return run
+        
     except Exception as e:
         print("Caught = {}".format(e.message))
         return None
