@@ -8,7 +8,15 @@ import numpy as np
 import tensorflow as tf
 
 from utils import prepare_data
-from amlrun import get_AMLRun
+
+# todo: import Azure Machine Learning Run class
+from azureml.core import Run
+
+# todo: initialize run context
+try:
+    run = Run.get_context()
+except:
+    run = None
 
 # download MNIST dataset for training
 X_train, X_test, y_train, y_test = prepare_data('mnist', './data')
@@ -43,7 +51,6 @@ with tf.name_scope('eval'):
 
 init = tf.global_variables_initializer()
 saver = tf.train.Saver()
-run = get_AMLRun()
 
 with tf.Session() as sess:
     init.run()
@@ -71,10 +78,10 @@ with tf.Session() as sess:
         # evaluate validation set
         acc_val = acc_op.eval(feed_dict = {X: X_test, y: y_test})
 
-        # Log accuracies to AML logger if using AML
+        # todo: Log validation and training accuracies through Azure Machine Learning
         if run is not None:
             run.log('Validation Accuracy', np.float(acc_val))
-            run.log('Training Accuracy', np.float(acc_train))
+            run.log('Training Accuracy', np.float(acc_train)) 
 
         # print out training and validation accuracy
         print(epoch, '-- Training accuracy:', acc_train, '\b Validation accuracy:', acc_val)
